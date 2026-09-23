@@ -11,16 +11,26 @@ pip install jev-rankkit
 For development from a checkout, use `pip install -e .` or `uv sync --group dev`.
 
 ```python
+import asyncio
+
 from jev_rankkit import Reranker
 
-response = Reranker().rerank_sync(
-    query="vector search database",
-    candidates=["Cooking notes", "Vector database guide", "SQL reference"],
-    top_k=2,
-)
-for result in response.results:
-    print(result.rank, result.item, result.score)
+
+async def main() -> None:
+    async with Reranker() as reranker:
+        response = await reranker.rerank(
+            query="vector search database",
+            candidates=["Cooking notes", "Vector database guide", "SQL reference"],
+            top_k=2,
+        )
+    for result in response.results:
+        print(result.rank, result.item, result.score)
+
+
+asyncio.run(main())
 ```
+
+This uses deterministic local ranking and needs no API key. See the [usage guide](docs/usage.md) for custom objects, Jev API setup, and RAG examples.
 
 ## Why this exists
 
@@ -28,11 +38,11 @@ Applications rank more than documents: retrieved chunks, products, entities, mem
 
 ## Installation
 
-The core has no runtime dependencies. `pip install 'jev-rankkit[jev]'` adds HTTP transport for the TypeSafe AI Jev backend; set `TYPESAFE_API_KEY` before making a call. `pip install 'jev-rankkit[embeddings]'` adds optional Sentence Transformers support and may download model weights on first use. For editable installs, use `pip install -e '.[jev]'` or `pip install -e '.[embeddings]'`. Integrations with LangChain, LlamaIndex, Qdrant, Pinecone, Elasticsearch, and OpenSearch need only the SDKs your application already uses; Jev Rankkit's adapters do not import them.
+The core has no runtime dependencies. `pip install 'jev-rankkit[jev]'` adds HTTP transport for the TypeSafe AI Jev backend. To call Jev, set `TYPESAFE_API_KEY` in your process environment; never put the key in Python source, README files, or version control. The [usage guide](docs/usage.md#using-the-typesafe-ai-jev-api) shows platform-specific setup and a complete call. `pip install 'jev-rankkit[embeddings]'` adds optional Sentence Transformers support and may download model weights on first use. For editable installs, use `pip install -e '.[jev]'` or `pip install -e '.[embeddings]'`. Integrations with LangChain, LlamaIndex, Qdrant, Pinecone, Elasticsearch, and OpenSearch need only the SDKs your application already uses; Jev Rankkit's adapters do not import them.
 
 ## Quick start
 
-The example above runs offline with deterministic lexical ranking. For Jev, use `async with Reranker(model="typesafe:jev-1.13.0", strategy="auto") as reranker:` and `await reranker.rerank(query=..., candidates=..., top_k=5)`. The result includes `.results`, `.stats`, `.execution_plan`, `.status`, and `.coverage`. See [basic example](examples/01_basic_reranking.py).
+The example above runs offline with deterministic lexical ranking. For Jev, install the optional extra, configure `TYPESAFE_API_KEY`, and create `Reranker(model="typesafe:jev-1.13.0", strategy="auto")`. See the complete [Jev API example](docs/usage.md#using-the-typesafe-ai-jev-api) and the [basic offline example](examples/01_basic_reranking.py).
 
 ## Generic reranking
 
@@ -108,4 +118,4 @@ Use an async scope (`async with Reranker(...)`) or `await reranker.aclose()` to 
 
 ## Contributing
 
-The project uses MIT licensing, Python 3.11+, `pytest`, Ruff, mypy, and `python -m build`. See [CONTRIBUTING.md](CONTRIBUTING.md), [CHANGELOG.md](CHANGELOG.md), and the [examples](examples/) before proposing API changes. No package has been published from this repository.
+The project uses MIT licensing, Python 3.11+, `pytest`, Ruff, mypy, and `python -m build`. Version **0.1.0** is published on [PyPI](https://pypi.org/project/jev-rankkit/). See [CONTRIBUTING.md](CONTRIBUTING.md), [CHANGELOG.md](CHANGELOG.md), and the [examples](examples/) before proposing API changes.
