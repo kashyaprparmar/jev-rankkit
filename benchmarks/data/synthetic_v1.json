@@ -1,0 +1,97 @@
+{
+  "name": "jev-rankkit-synthetic-smoke",
+  "version": "1",
+  "provenance": "Original synthetic examples written for Jev Rankkit; no third-party corpus content.",
+  "cases": [
+    {
+      "case_id": "general-return-policy",
+      "domain": "general_retrieval",
+      "query": "How many days can I return an online purchase?",
+      "candidates": [
+        {"text": "Online purchases can be returned within 30 days of delivery.", "relevance": 3},
+        {"text": "Store purchases can be returned within 14 days.", "relevance": 1},
+        {"text": "Shipping takes three business days.", "relevance": 0},
+        {"text": "Customers start an online return within 30 days after delivery.", "relevance": 3},
+        {"text": "Gift cards cannot be exchanged for cash.", "relevance": 0},
+        {"text": "A return label is available in the account portal.", "relevance": 1},
+        {"text": "The store opens at nine in the morning.", "relevance": 0},
+        {"text": "Refunds are credited after inspection.", "relevance": 1}
+      ]
+    },
+    {
+      "case_id": "technical-vector-index",
+      "domain": "technical_rag",
+      "query": "How does HNSW trade memory for approximate vector search speed?",
+      "candidates": [
+        {"text": "HNSW stores a multilayer proximity graph; additional links use memory but reduce search steps.", "relevance": 3},
+        {"text": "A B-tree indexes sorted scalar keys.", "relevance": 0},
+        {"text": "Increasing HNSW M creates more graph edges, often improving recall and increasing memory use.", "relevance": 3},
+        {"text": "Vector search compares embedding similarity.", "relevance": 1},
+        {"text": "An inverted index maps terms to posting lists.", "relevance": 0},
+        {"text": "Higher efSearch explores more candidates and may increase latency and recall.", "relevance": 2},
+        {"text": "JSON stores nested application records.", "relevance": 0},
+        {"text": "Graph layers in HNSW guide approximate nearest-neighbor traversal.", "relevance": 2}
+      ]
+    },
+    {
+      "case_id": "entity-mercury",
+      "domain": "entity_search",
+      "query": "Mercury the planet closest to the Sun",
+      "candidates": [
+        {"text": "Mercury: the innermost planet of the Solar System.", "relevance": 3},
+        {"text": "Mercury: a chemical element with symbol Hg.", "relevance": 0},
+        {"text": "Mercury Records: a music label.", "relevance": 0},
+        {"text": "Venus: the second planet from the Sun.", "relevance": 1},
+        {"text": "Mercury, Roman messenger god.", "relevance": 0},
+        {"text": "The planet Mercury orbits closer to the Sun than any other planet.", "relevance": 3},
+        {"text": "Mars: the fourth planet from the Sun.", "relevance": 0},
+        {"text": "Solar System: the Sun and its orbiting objects.", "relevance": 1}
+      ]
+    },
+    {
+      "case_id": "product-noise-cancel",
+      "domain": "product_ranking",
+      "query": "wireless headphones with active noise cancellation and long battery life",
+      "candidates": [
+        {"text": "Wireless headphones, active noise cancellation, 30-hour battery.", "relevance": 3},
+        {"text": "Wired earbuds without noise cancellation.", "relevance": 0},
+        {"text": "Wireless headphones with passive isolation and 8-hour battery.", "relevance": 1},
+        {"text": "Over-ear Bluetooth headphones with adaptive noise cancellation and 35-hour battery.", "relevance": 3},
+        {"text": "Wireless charging pad for phones.", "relevance": 0},
+        {"text": "Bluetooth speaker with 20-hour battery.", "relevance": 0},
+        {"text": "Noise-canceling wireless earbuds with 6-hour charge plus charging case.", "relevance": 2},
+        {"text": "Replacement headphone ear cushions.", "relevance": 0}
+      ]
+    },
+    {
+      "case_id": "tool-calendar",
+      "domain": "tool_selection",
+      "query": "Schedule a meeting with three colleagues next week",
+      "candidates": [
+        {"text": "create_calendar_event: invite attendees at a chosen date and time.", "relevance": 3},
+        {"text": "search_calendar_availability: find free slots for attendees.", "relevance": 3},
+        {"text": "delete_calendar_event: remove an existing event.", "relevance": 0},
+        {"text": "send_email: deliver a message to recipients.", "relevance": 1},
+        {"text": "search_documents: retrieve indexed files.", "relevance": 0},
+        {"text": "get_weather: fetch a forecast.", "relevance": 0},
+        {"text": "list_contacts: look up colleague email addresses.", "relevance": 2},
+        {"text": "update_calendar_event: change the time of an existing meeting.", "relevance": 1}
+      ]
+    },
+    {
+      "case_id": "sql-orders",
+      "domain": "sql_schema_selection",
+      "query": "total revenue by customer for paid orders last month",
+      "candidates": [
+        {"text": "orders table: order_id, customer_id, status, ordered_at, total_amount.", "relevance": 3},
+        {"text": "customers table: customer_id, customer_name, region.", "relevance": 3},
+        {"text": "products table: product_id, title, category.", "relevance": 0},
+        {"text": "payments table: payment_id, order_id, paid_at, payment_status.", "relevance": 2},
+        {"text": "sessions table: visitor_id, started_at, device.", "relevance": 0},
+        {"text": "orders.total_amount: monetary amount of an order.", "relevance": 3},
+        {"text": "customers.region: geographic region for the customer.", "relevance": 0},
+        {"text": "inventory table: warehouse_id, product_id, on_hand.", "relevance": 0}
+      ]
+    }
+  ]
+}

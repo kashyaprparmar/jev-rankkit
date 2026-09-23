@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "jev-rankkit"
+version = "0.1.0"
+description = "Universal, type-safe reranking for RAG, search, agents, entities, and Python objects"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Jev Rankkit contributors" }]
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = ["reranking", "search", "rag", "agents", "ranking", "jev"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+jev = ["httpx>=0.27,<1"]
+embeddings = ["sentence-transformers>=3,<7"]
+
+[dependency-groups]
+dev = [
+  "build>=1.2",
+  "httpx>=0.27,<1",
+  "mypy>=1.13",
+  "pytest>=8.3",
+  "pytest-asyncio>=0.24",
+  "pytest-cov>=6",
+  "ruff>=0.8",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/jev_rankkit"]
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = ["live: opt-in billable provider contract tests"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC", "RUF"]
+ignore = ["UP040"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["jev_rankkit"]
+mypy_path = "src"
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = ["httpx", "sentence_transformers"]
+ignore_missing_imports = true
