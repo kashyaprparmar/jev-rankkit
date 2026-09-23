@@ -1,5 +1,7 @@
 # Jev Rankkit
 
+![Jev Rankkit ranking flow: candidate items pass through lexical, semantic, and structured ranking signals into a ranked shortlist](docs/assets/jev-rankkit-ranking-flow.png)
+
 Universal, type-safe reranking for RAG, search, agents, entities, and arbitrary Python objects.
 
 ```bash
