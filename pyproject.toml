@@ -26,6 +26,12 @@ classifiers = [
 ]
 dependencies = []
 
+[project.urls]
+Homepage = "https://github.com/kashyaprparmar/jev-rankkit"
+Repository = "https://github.com/kashyaprparmar/jev-rankkit"
+Issues = "https://github.com/kashyaprparmar/jev-rankkit/issues"
+Changelog = "https://github.com/kashyaprparmar/jev-rankkit/blob/main/CHANGELOG.md"
+
 [project.optional-dependencies]
 jev = ["httpx>=0.27,<1"]
 embeddings = ["sentence-transformers>=3,<7"]

@@ -1,14 +1,14 @@
 # Jev Rankkit
 
-![Jev Rankkit ranking flow: candidate items pass through lexical, semantic, and structured ranking signals into a ranked shortlist](docs/assets/jev-rankkit-ranking-flow.png)
+![Jev Rankkit ranking flow: candidate items pass through lexical, semantic, and structured ranking signals into a ranked shortlist](https://raw.githubusercontent.com/kashyaprparmar/jev-rankkit/main/docs/assets/jev-rankkit-ranking-flow.png)
 
 Universal, type-safe reranking for RAG, search, agents, entities, and arbitrary Python objects.
 
 ```bash
-pip install -e .
+pip install jev-rankkit
 ```
 
-The package is not published yet, so install it from this checkout. For the optional Jev backend use `pip install -e '.[jev]'`; for development tools use `uv sync --group dev`.
+For development from a checkout, use `pip install -e .` or `uv sync --group dev`.
 
 ```python
 from jev_rankkit import Reranker
@@ -28,7 +28,7 @@ Applications rank more than documents: retrieved chunks, products, entities, mem
 
 ## Installation
 
-The core has no runtime dependencies. From this checkout, `pip install -e '.[jev]'` adds HTTP transport for the TypeSafe AI Jev backend; set `TYPESAFE_API_KEY` before making a call. `pip install -e '.[embeddings]'` adds optional Sentence Transformers support and may download model weights on first use. Integrations with LangChain, LlamaIndex, Qdrant, Pinecone, Elasticsearch, and OpenSearch need only the SDKs your application already uses; Jev Rankkit's adapters do not import them.
+The core has no runtime dependencies. `pip install 'jev-rankkit[jev]'` adds HTTP transport for the TypeSafe AI Jev backend; set `TYPESAFE_API_KEY` before making a call. `pip install 'jev-rankkit[embeddings]'` adds optional Sentence Transformers support and may download model weights on first use. For editable installs, use `pip install -e '.[jev]'` or `pip install -e '.[embeddings]'`. Integrations with LangChain, LlamaIndex, Qdrant, Pinecone, Elasticsearch, and OpenSearch need only the SDKs your application already uses; Jev Rankkit's adapters do not import them.
 
 ## Quick start
 
